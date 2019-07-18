@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  ns:
+    image: "coredns/coredns"
+    volumes:
+      - ./Corefile:/Corefile:ro
+    ports:
+      - "5353:5353/udp"
+      - "5353:5353"
+  doh:
+    image: doh-proxy
+    ports:
+      - "3000:3000"
+    command: ["/doh-proxy", "-u", "ns:5353", "-l", "0.0.0.0:3000  "]

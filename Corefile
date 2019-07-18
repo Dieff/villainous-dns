@@ -1,0 +1,11 @@
+(forward) {
+  forward . tls://1.1.1.1 tls://8.8.4.4 tls://9.9.9.9 tls://145.100.185.15 tls://145.100.185.16 tls://185.49.141.37 tls://89.233.43.71 tls://158.64.1.29 {
+    policy random
+  }
+}
+
+.:5353 {
+  log
+  import forward
+  cache
+}
