@@ -8,16 +8,16 @@ services:
       - "5353:5353/udp"
       - "5353:5353"
   doh:
-    image: doh_proxy
+    image: "dieff07/doh-proxy"
     expose:
       - 3000
     command: ["/doh-proxy", "-u", "ns:5353", "-l", "0.0.0.0:3000"]
   nginx:
-    image: nginx_letsencrypt
+    image: "dieff07/nginx-letsencrypt"
     environment:
       - "UPSTREAM_SERVER=http://doh:3000"
       - "HOST=doh.ndieff.dev"
-      - "EMAIL=nick.dieff@gmail.com"
+      - "EMAIL=dendekay@gmail.com"
     ports:
       - "80:80"
       - "443:443"
